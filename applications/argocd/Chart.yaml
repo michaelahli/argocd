@@ -1,6 +1,6 @@
 apiVersion: v2
-name: octopusdb
-description: database for octopus application
+name: argocd
+description: gitops application for kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -21,3 +21,8 @@ version: 0.1.0
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: "1.0"
+
+dependencies:
+  - name: argocd
+    version: 5.52.0
+    repository: https://argoproj.github.io/argo-helm
