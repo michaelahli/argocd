@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: octopus-configmap
+data:
+  RUNTIME_ENVIRONMENT: staging
+  DATABASE_DBNAME: octopusdb_staging

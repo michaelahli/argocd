@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octopus-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octopus
+  template:
+    metadata:
+      labels:
+        app: octopus
+    spec:
+      serviceAccountName: octopus-service-account
+      volumes:
+        - name: config-volume
+      containers:
+        - name: octopus
+          image: host.docker.internal:30500/octopus:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: octopus-configmap
+            - secretRef:
+                name: octopus-secret
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+      imagePullSecrets:
+        - name: registry-secret
