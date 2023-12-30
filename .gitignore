@@ -8,3 +8,6 @@ octo/
 octopus/
 
 .env.script
+
+templates/certificates/client-cert.pem
+templates/certificates/client-key.pem
